@@ -11,9 +11,30 @@
   --accent-glow: rgba(0, 212, 255, 0.15);
   --accent-glow-green: rgba(0, 255, 136, 0.15);
   --border-subtle: rgba(255, 255, 255, 0.06);
+  --nav-bg: rgba(10, 10, 15, 0.85);
+  --terminal-bg: #12121a;
+  --terminal-bar-bg: rgba(255, 255, 255, 0.03);
   --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
   --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
   --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --accent-primary: #0284c7;
+  --accent-secondary: #059669;
+  --accent-glow: rgba(2, 132, 199, 0.15);
+  --accent-glow-green: rgba(5, 150, 105, 0.15);
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --nav-bg: rgba(248, 250, 252, 0.88);
+  --terminal-bg: #0f172a;
+  --terminal-bar-bg: rgba(255, 255, 255, 0.05);
 }
 
 *, *::before, *::after {

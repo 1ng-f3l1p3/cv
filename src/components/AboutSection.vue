@@ -3,36 +3,36 @@
     <div class="about__content">
       <h2 class="section__title" v-reveal>
         <span class="section__number">01.</span>
-        Sobre m&iacute;
+        {{ t.about.title }}
       </h2>
       <div class="about__grid">
         <div class="about__text" v-reveal style="transition-delay: 0.1s">
           <p>
-            Ingeniero en Sistemas Computacionales con m&aacute;s de <span class="highlight">6 a&ntilde;os de experiencia</span> en desarrollo web full stack, administraci&oacute;n de bases de datos y soporte t&eacute;cnico.
+            {{ t.about.p1Part1 }}<span class="highlight">{{ t.about.p1Highlight }}</span>{{ t.about.p1Part2 }}
           </p>
           <p>
-            Actualmente participo en el desarrollo de un <span class="highlight">CRM modular y multitenant</span> con Laravel 12, PostgreSQL 17 y Vue 3. S&oacute;lido dominio de PHP (Laravel, Symfony, CodeIgniter), JavaScript (Vue, Angular, React), Node.js, MySQL y servidores Linux.
+            {{ t.about.p2Part1 }}<span class="highlight">{{ t.about.p2Highlight1 }}</span>{{ t.about.p2Part2 }}<span class="highlight">{{ t.about.p2Highlight2 }}</span>{{ t.about.p2Part3 }}<span class="highlight">{{ t.about.p2Highlight3 }}</span>{{ t.about.p2Part4 }}
           </p>
           <p>
-            Experiencia comprobada implementando APIs RESTful, integrando SDKs de terceros (verificaci&oacute;n facial, pasarelas de pago) y administrando CRMs como Vtiger y Kommo. Adopto activamente herramientas de <span class="highlight">IA (Claude)</span> para acelerar el ciclo de desarrollo.
+            {{ t.about.p3Part1 }}<span class="highlight">{{ t.about.p3Highlight }}</span>{{ t.about.p3Part2 }}
           </p>
           <div class="about__details">
             <div class="about__detail-item">
-              <span class="about__detail-label">Ubicaci&oacute;n</span>
-              <span class="about__detail-value">M&eacute;rida, Yucat&aacute;n, M&eacute;xico</span>
+              <span class="about__detail-label">{{ t.about.locationLabel }}</span>
+              <span class="about__detail-value">{{ t.about.locationValue }}</span>
             </div>
             <div class="about__detail-item">
-              <span class="about__detail-label">Formaci&oacute;n</span>
-              <span class="about__detail-value">Ing. Sistemas, IT M&eacute;rida (2009-2015)</span>
+              <span class="about__detail-label">{{ t.about.educationLabel }}</span>
+              <span class="about__detail-value">{{ t.about.educationValue }}</span>
             </div>
             <div class="about__detail-item">
-              <span class="about__detail-label">Idiomas</span>
-              <span class="about__detail-value">Espa&ntilde;ol (Nativo) / Ingl&eacute;s (lectura t&eacute;cnica)</span>
+              <span class="about__detail-label">{{ t.about.languagesLabel }}</span>
+              <span class="about__detail-value">{{ t.about.languagesValue }}</span>
             </div>
           </div>
         </div>
         <div class="about__skills" v-reveal style="transition-delay: 0.2s">
-          <h3 class="about__skills-title">Stack principal</h3>
+          <h3 class="about__skills-title">{{ t.about.skillsTitle }}</h3>
           <div class="skills__grid">
             <div class="skill-item" v-for="skill in skills" :key="skill.name">
               <div class="skill-item__header">
@@ -55,22 +55,25 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useI18n } from '../composables/useI18n'
+
+const { t } = useI18n()
 
 const skills = ref([
-  { name: 'PHP / Laravel', level: 95 },
-  { name: 'Vue.js', level: 85 },
-  { name: 'JavaScript / TypeScript', level: 88 },
-  { name: 'PostgreSQL / MySQL', level: 90 },
-  { name: 'Node.js', level: 80 },
-  { name: 'Linux / DevOps', level: 75 },
+  { name: 'PHP / Laravel 12', level: 95 },
+  { name: 'Vue 3 / React / TypeScript', level: 90 },
+  { name: 'PostgreSQL 17 / MySQL', level: 90 },
+  { name: '.NET 8 / C# (WPF)', level: 85 },
+  { name: 'Flutter / Dart', level: 80 },
+  { name: 'Linux / Docker / CI/CD', level: 82 },
 ])
 
 const otherSkills = ref([
-  'Angular', 'React', 'Symfony', 'CodeIgniter',
-  'Flutter / Dart', 'Ruby on Rails', 'MongoDB',
-  'SQL Server', 'Firebase', 'Git / GitLab',
-  'APIs REST', 'CRMs (Vtiger, Kommo)',
-  'AWS', 'Rocky Linux', 'Ubuntu', 'Figma',
+  'PrimeVue / Pinia', 'Node.js', 'Playwright (E2E)', 'PHPStan / Pint',
+  'WhatsApp Business API', 'Metamap / Veriff', 'Ruby on Rails',
+  'Symfony', 'CodeIgniter', 'Angular', 'MongoDB', 'SQL Server',
+  'GitLab CI/CD', 'Rocky Linux', 'Ubuntu', 'AWS', 'Firebase',
+  'IA Generativa (Claude / Gemini)', 'Figma / Draw.io',
 ])
 </script>
 

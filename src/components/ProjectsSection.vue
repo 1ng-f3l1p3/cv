@@ -3,18 +3,41 @@
     <div class="projects__content">
       <h2 class="section__title" v-reveal>
         <span class="section__number">03.</span>
-        Proyectos destacados
+        {{ t.projects.title }}
       </h2>
       <div class="projects__grid">
         <div
           class="project-card"
-          v-for="(project, index) in projects"
-          :key="project.title"
+          v-for="(project, index) in t.projects.items"
+          :key="project.id"
           v-reveal
           :style="{ transitionDelay: index * 0.12 + 's' }"
         >
           <div class="project-card__header">
-            <div class="project-card__icon">{{ project.icon }}</div>
+            <div class="project-card__icon" :class="'project-card__icon--' + project.id">
+              <!-- CRM Multitenant -->
+              <svg v-if="project.id === 'crm-multitenant'" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+              <!-- Desktop & WABA -->
+              <svg v-else-if="project.id === 'desktop-waba'" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+                <path d="M7 8h6M7 11h3"/>
+              </svg>
+              <!-- Fintech Credit & Biometrics -->
+              <svg v-else-if="project.id === 'fintech-credit'" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+              <!-- Mobile & Payments -->
+              <svg v-else width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                <line x1="12" y1="18" x2="12.01" y2="18"/>
+                <path d="M8 7h8M8 10h5"/>
+              </svg>
+            </div>
             <div class="project-card__company">
               <span class="project-card__role">{{ project.role }}</span>
               <span class="project-card__company-name">{{ project.company }}</span>
@@ -26,7 +49,7 @@
             <span class="project-card__tech-tag" v-for="tech in project.tech" :key="tech">{{ tech }}</span>
           </div>
           <div class="project-card__details">
-            <p v-for="(detail, index) in project.details" :key="index" class="project-card__detail">
+            <p v-for="(detail, i) in project.details" :key="i" class="project-card__detail">
               <span class="project-card__bullet">&#9642;</span>
               {{ detail }}
             </p>
@@ -38,57 +61,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { useI18n } from '../composables/useI18n'
 
-const projects = ref([
-  {
-    icon: '&#127981;',
-    role: 'Programador PHP Full Stack',
-    company: 'Zaaztech',
-    title: 'CRM Multitenant Modular',
-    description: 'Desarrollo de un CRM modular y personalizable con arquitectura multitenant, concebido como evolución de Vtiger con herramientas adicionales y adaptable a diferentes giros de negocio.',
-    tech: ['Laravel 12', 'PostgreSQL 17', 'Vue 3', 'APIs REST', 'Rocky Linux', 'Ubuntu'],
-    details: [
-      'Módulos personalizables por tenant sin afectar el núcleo de la aplicación',
-      'Diseño e implementación de entidades y extensiones a medida',
-      'Administración de servidores Rocky Linux y Ubuntu Linux (CWP/SSH)',
-      'CI/CD en proyectos CRM/API de GitLab',
-      'Desarrollo asistido con IA (Claude) para acelerar el ciclo de desarrollo',
-      'Colaboración con equipo ágil vía GitLab y ClickUp',
-    ],
-  },
-  {
-    icon: '&#128274;',
-    role: 'Analista de Sistemas',
-    company: 'Financiera Prestamito',
-    title: 'Plataforma de Crédito y Cobranza',
-    description: 'Desarrollo de aplicaciones web internas para procesos de crédito y cobranza, con integración de verificación facial y pasarelas de pago.',
-    tech: ['PHP', 'Ruby on Rails', 'MySQL', 'Bootstrap 5', 'Metamap', 'Veriff', 'Webhooks'],
-    details: [
-      'APIs RESTful con Ruby on Rails para validación de identidad y dispersión de pagos',
-      'Integración de SDKs Metamap y Veriff para verificación facial',
-      'Desarrollo de webhooks en PHP para proyectos de la empresa',
-      'Bases de datos MySQL con procedimientos almacenados, triggers y vistas',
-      'Administración de CRM Kommo con consultas SQL para reportes ejecutivos',
-      'Documentación de proyectos y diagramas UML para modelado de sistemas',
-    ],
-  },
-  {
-    icon: '&#128241;',
-    role: 'Programador',
-    company: 'System Global App',
-    title: 'Apps Móviles y APIs',
-    description: 'Desarrollo de aplicaciones móviles nativas Android y aplicaciones web con frameworks modernos e integración de servicios externos.',
-    tech: ['Android', 'Retrofit', 'Laravel', 'Symfony', 'Vue.js', 'Angular'],
-    details: [
-      'Apps móviles nativas consumiendo APIs REST mediante Retrofit',
-      'Integración de APIs de Facebook, Google y PayPal para autenticación y pagos',
-      'Envío masivo de correos transaccionales con Mailgun',
-      'Control de versiones con Git y documentación técnica con Figma/Draw.io',
-      'Arquitectura MVC con múltiples frameworks PHP y JavaScript',
-    ],
-  },
-])
+const { t } = useI18n()
 </script>
 
 <style scoped>
@@ -149,25 +124,36 @@ const projects = ref([
 }
 
 .project-card__icon {
-  font-size: 1.8rem;
-  width: 50px;
-  height: 50px;
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
   border-radius: 10px;
+  color: var(--accent-primary);
+  transition: all var(--transition-smooth);
+}
+
+.project-card:hover .project-card__icon {
+  border-color: var(--accent-primary);
+  color: var(--accent-secondary);
 }
 
 .project-card__company {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .project-card__role {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-family: var(--font-mono);
   color: var(--accent-primary);
+  line-height: 1.4;
 }
 
 .project-card__company-name {
@@ -225,6 +211,7 @@ const projects = ref([
   color: var(--accent-primary);
   font-size: 0.7rem;
   margin-top: 0.15rem;
+  flex-shrink: 0;
 }
 
 @media (max-width: 768px) {

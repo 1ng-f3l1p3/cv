@@ -3,11 +3,11 @@
     <div class="experience__content">
       <h2 class="section__title" v-reveal>
         <span class="section__number">02.</span>
-        Experiencia
+        {{ t.experience.title }}
       </h2>
       <div class="timeline">
         <div
-          v-for="(job, index) in jobs"
+          v-for="(job, index) in t.experience.jobs"
           :key="job.company + job.period"
           class="timeline__item"
           v-reveal
@@ -15,7 +15,7 @@
         >
           <div class="timeline__marker">
             <div class="timeline__dot" :class="{ 'timeline__dot--active': job.current }"></div>
-            <div class="timeline__line" v-if="index < jobs.length - 1"></div>
+            <div class="timeline__line" v-if="index < t.experience.jobs.length - 1"></div>
           </div>
           <div class="timeline__card">
             <div class="timeline__header">
@@ -45,68 +45,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { useI18n } from '../composables/useI18n'
 
-const jobs = ref([
-  {
-    current: true,
-    period: 'Sep 2024 – Presente',
-    role: 'Programador PHP Full Stack',
-    company: 'Zaaztech',
-    location: 'Vancouver, Canadá (remoto)',
-    tech: ['Laravel 12', 'PostgreSQL 17', 'Vue 3', 'Node.js', 'Rocky Linux', 'Ubuntu', 'GitLab'],
-    details: [
-      'Desarrollo de CRM modular y multitenant como evolución de Vtiger, adaptable a diferentes giros de negocio',
-      'Diseño e implementación de módulos personalizables por tenant sin afectar el núcleo de la aplicación',
-      'Administración de servidores Rocky Linux (CWP/SSH) y Ubuntu Linux para el nuevo CRM y sus APIs',
-      'CI/CD en GitLab; gestión ágil de tareas y entregables con ClickUp',
-      'Desarrollo asistido con IA (Claude) para acelerar el ciclo de desarrollo y documentación',
-    ],
-  },
-  {
-    current: false,
-    period: 'Oct 2022 – May 2024',
-    role: 'Analista de Sistemas',
-    company: 'Financiera Prestamito',
-    location: 'Mérida, Yucatán',
-    tech: ['PHP', 'Ruby on Rails', 'MySQL', 'Bootstrap 5', 'Metamap', 'Veriff', 'Webhooks'],
-    details: [
-      'Desarrollo de aplicaciones web internas para procesos de crédito y cobranza',
-      'APIs RESTful con Ruby on Rails para validación de identidad y dispersión de pagos',
-      'Integración de SDKs de verificación facial (Metamap y Veriff)',
-      'Diseño de bases de datos MySQL con procedimientos almacenados, triggers y vistas',
-      'Administración de CRM Kommo con consultas SQL para reportes ejecutivos',
-      'Soporte técnico remoto y presencial niveles 1, 2 y 3',
-    ],
-  },
-  {
-    current: false,
-    period: 'Ene 2022 – Oct 2022',
-    role: 'Técnico Independiente',
-    company: 'Cuenta propia',
-    location: 'Homún, Yucatán',
-    tech: ['Hardware', 'Windows', 'Soporte técnico'],
-    details: [
-      'Reparación de laptops y equipos de escritorio: pantallas, teclados, memorias y discos duros',
-      'Instalación y configuración de sistemas operativos, suites ofimáticas y periféricos',
-      'Soporte técnico remoto y mantenimiento preventivo para usuarios y pequeños negocios',
-    ],
-  },
-  {
-    current: false,
-    period: 'Abr 2018 – Ago 2021',
-    role: 'Programador',
-    company: 'System Global App',
-    location: 'Mérida, Yucatán',
-    tech: ['Android', 'Retrofit', 'Laravel', 'Symfony', 'Vue.js', 'Angular', 'MySQL'],
-    details: [
-      'Desarrollo de aplicaciones móviles nativas Android consumiendo APIs REST mediante Retrofit',
-      'Integración de APIs de Facebook, Google y PayPal para autenticación social y pagos en línea',
-      'Arquitectura MVC con múltiples frameworks PHP y JavaScript',
-      'Envío masivo de correos transaccionales con Mailgun; documentación con Figma y Draw.io',
-    ],
-  },
-])
+const { t } = useI18n()
 </script>
 
 <style scoped>
